@@ -48,6 +48,131 @@
       display: block;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================
+       LOGIN
+    ========================== */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(180deg, #f7f7f7 0%, #eef4f9 100%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 32px;
+    }
+
+    .login-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+
+    .login-card h1 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .login-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cfd8e3;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 105, 180, 0.08);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 13px 16px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .error {
+      margin-top: 14px;
+      color: #c62828;
+      font-size: 0.95rem;
+      min-height: 20px;
+    }
+
+    .login-note {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid #e6edf3;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       SITE
+    ========================== */
     .topbar {
       height: 4px;
       background: var(--primary);
@@ -108,6 +233,13 @@
       font-size: 0.92rem;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -120,6 +252,21 @@
 
     .nav-links a:hover {
       color: var(--primary-dark);
+    }
+
+    .logout-btn {
+      border: 1px solid #cfd8e3;
+      background: #fff;
+      color: var(--primary);
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .logout-btn:hover {
+      background: #f7fbfe;
     }
 
     .hero {
@@ -382,7 +529,7 @@
       }
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 920px) {
       .hero-grid,
       .content-grid,
       .guides-grid {
@@ -402,6 +549,7 @@
       }
 
       .brand,
+      .nav-right,
       .nav-links {
         width: 100%;
         justify-content: center;
@@ -420,7 +568,8 @@
 
       .card,
       .agent-header,
-      .agent-body {
+      .agent-body,
+      .login-card {
         padding: 20px;
       }
 
@@ -432,163 +581,233 @@
   </style>
 </head>
 <body>
-  <div class="topbar"></div>
-
-  <header class="navbar">
-    <div class="container navbar-inner">
-      <div class="brand">
-        <div class="brand-badge">AR</div>
-        <div class="brand-text">
-          <h1>POC Agentforce Ana Resuelve Colmédica</h1>
-          <p>Prueba de concepto para experiencia conversacional embebida</p>
-        </div>
-      </div>
-
-      <nav class="nav-links">
-        <a href="#contexto">Contexto</a>
-        <a href="#guias">Guías</a>
-        <a href="#agente">Agente</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Prueba de concepto</span>
-
-        <div class="headline-wrap">
-          <div class="headline-box">POC Agentforce</div>
-          <div class="headline-box">Ana Resuelve Colmédica</div>
-        </div>
-
-        <p class="subtitle">
-          Sitio de validación para analizar cómo un agente conversacional puede integrarse en una experiencia web corporativa con una presentación clara, institucional y alineada con una base documental definida.
-        </p>
-      </div>
-
-      <div class="hero-image"></div>
-    </div>
-  </section>
-
-  <section class="intro">
-    <div class="container">
+  <!-- LOGIN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-badge">AR</div>
+      <h1>Acceso a la PoC</h1>
       <p>
-        Este sitio está siendo utilizado para realizar una prueba de concepto de las capacidades de Agentforce, en un entorno controlado que busca simular una experiencia digital corporativa alineada con el estilo visual de Colmédica. El propósito principal de esta validación es evaluar cómo un agente conversacional puede responder consultas, orientar al usuario y entregar información relevante de forma clara, estructurada y consistente, utilizando como soporte un conjunto específico de documentos guía previamente definidos como fuente principal de conocimiento.
-      </p>
-    </div>
-  </section>
-
-  <section class="section" id="contexto">
-    <div class="container">
-      <h2 class="section-title">Contexto de la prueba</h2>
-      <p class="section-lead">
-        La PoC busca validar no solo el funcionamiento técnico del agente embebido, sino también su comportamiento dentro de un canal web con apariencia institucional. En este ejercicio se analiza la calidad de la interacción, la capacidad del agente para comprender preguntas formuladas en lenguaje natural, la pertinencia de las respuestas generadas y su alineación con el tono esperado para una organización del sector salud. Asimismo, se pretende revisar la facilidad de adopción del canal, la consistencia en el uso del conocimiento disponible y el potencial de este tipo de solución como mecanismo de orientación y acompañamiento digital.
+        Ingresa las credenciales de prueba para acceder al entorno de validación de
+        <strong>POC Agentforce Ana Resuelve Colmédica</strong>.
       </p>
 
-      <div class="content-grid">
-        <article class="card">
-          <h3>Objetivo funcional</h3>
-          <p>
-            El objetivo funcional de esta implementación es demostrar que Agentforce puede operar como un punto de contacto digital útil, confiable y escalable, integrándose en una página web con una identidad visual corporativa y ofreciendo una experiencia conversacional robusta. La prueba permite evaluar si el agente logra recuperar información pertinente, resumirla adecuadamente, responder con claridad y mantener un marco de conversación coherente frente a diferentes tipos de preguntas relacionadas con las guías cargadas.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Base documental utilizada</h3>
-          <p>
-            Para esta validación, el agente ha sido configurado para apoyarse en cuatro documentos específicos: la Guía Cardiología, la Guía de Gastroenterología PRE, la Guía de Vacunación y la Guía Dermatológica. Estas guías constituyen el núcleo de conocimiento de la prueba y permiten revisar cómo el agente interpreta contenidos especializados, identifica información relevante dentro del contexto disponible y la presenta de manera comprensible para el usuario final, manteniendo una comunicación organizada y útil.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="channel-section" id="guias">
-    <div class="container">
-      <h2 class="channel-title">Guías de conocimiento utilizadas en la prueba</h2>
-
-      <div class="guides-grid">
-        <article class="guide-item">
-          <div class="guide-icon">❤</div>
-          <h4>Guía Cardiología</h4>
-          <p>
-            Utilizada para validar consultas y respuestas relacionadas con lineamientos y orientación dentro del componente cardiovascular.
-          </p>
-        </article>
-
-        <article class="guide-item">
-          <div class="guide-icon">◎</div>
-          <h4>Guía de Gastroenterología PRE</h4>
-          <p>
-            Incluida para revisar la capacidad del agente de interpretar información asociada a criterios y contenidos de gastroenterología.
-          </p>
-        </article>
-
-        <article class="guide-item">
-          <div class="guide-icon">✚</div>
-          <h4>Guía de Vacunación</h4>
-          <p>
-            Empleada para probar consultas de orientación basadas en contenidos de inmunización y lineamientos informativos relacionados.
-          </p>
-        </article>
-
-        <article class="guide-item">
-          <div class="guide-icon">◌</div>
-          <h4>Guía Dermatológica</h4>
-          <p>
-            Considerada para medir la recuperación de conocimiento pertinente dentro de conversaciones asociadas al ámbito dermatológico.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="agent-section" id="agente">
-    <div class="container">
-      <div class="agent-wrapper">
-        <div class="agent-header">
-          <h3>Agente embebido</h3>
-          <p>
-            A continuación se dispone el espacio de integración del agente conversacional de Agentforce. En esta sección debe incorporarse el snippet oficial del deployment web, con el fin de ejecutar la prueba funcional dentro de una página con estilo corporativo, contenido contextual y una estructura visual consistente con el enfoque de esta demostración.
-          </p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input id="username" name="username" type="text" autocomplete="off" required />
         </div>
 
-        <div class="agent-body">
-          <div class="agent-placeholder">
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input id="password" name="password" type="password" required />
+        </div>
 
+        <button type="submit" class="btn btn-full">Ingresar</button>
+        <div id="loginError" class="error"></div>
+      </form>
+
+      <div class="login-note">
+        Este acceso previo está diseñado para una prueba de concepto. Si las credenciales
+        están embebidas en el HTML, la protección es solo demostrativa y no reemplaza una
+        autenticación real con backend.
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div id="appContent" class="hidden">
+    <div class="topbar"></div>
+
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <div class="brand">
+          <div class="brand-badge">AR</div>
+          <div class="brand-text">
+            <h1>POC Agentforce Ana Resuelve Colmédica</h1>
+            <p>Prueba de concepto para experiencia conversacional embebida</p>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <nav class="nav-links">
+            <a href="#contexto">Contexto</a>
+            <a href="#guias">Guías</a>
+            <a href="#agente">Agente</a>
+          </nav>
+          <button id="logoutBtn" class="logout-btn" type="button">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Prueba de concepto</span>
+
+          <div class="headline-wrap">
+            <div class="headline-box">POC Agentforce</div>
+            <div class="headline-box">Ana Resuelve Colmédica</div>
           </div>
 
-			  <script type='text/javascript'>
-				function initEmbeddedMessaging() {
-					try {
-						embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
+          <p class="subtitle">
+            Sitio de validación para analizar cómo un agente conversacional puede integrarse en una experiencia web corporativa con una presentación clara, institucional y alineada con una base documental definida.
+          </p>
+        </div>
 
-						embeddedservice_bootstrap.init(
-							'00DfL00000OHd0l',
-							'Github_Messaging',
-							'https://sqdm1.my.site.com/ESWGithubMessaging1776746702168',
-							{
-								scrt2URL: 'https://sqdm1.my.salesforce-scrt.com'
-							}
-						);
-					} catch (err) {
-						console.error('Error loading Embedded Messaging: ', err);
-					}
-				};
-			</script>
-			<script type='text/javascript' src='https://sqdm1.my.site.com/ESWGithubMessaging1776746702168/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+        <div class="hero-image"></div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="container">
+        <p>
+          Este sitio está siendo utilizado para realizar una prueba de concepto de las capacidades de Agentforce, en un entorno controlado que busca simular una experiencia digital corporativa alineada con el estilo visual de Colmédica. El propósito principal de esta validación es evaluar cómo un agente conversacional puede responder consultas, orientar al usuario y entregar información relevante de forma clara, estructurada y consistente, utilizando como soporte un conjunto específico de documentos guía previamente definidos como fuente principal de conocimiento.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="contexto">
+      <div class="container">
+        <h2 class="section-title">Contexto de la prueba</h2>
+        <p class="section-lead">
+          La PoC busca validar no solo el funcionamiento técnico del agente embebido, sino también su comportamiento dentro de un canal web con apariencia institucional. En este ejercicio se analiza la calidad de la interacción, la capacidad del agente para comprender preguntas formuladas en lenguaje natural, la pertinencia de las respuestas generadas y su alineación con el tono esperado para una organización del sector salud. Asimismo, se pretende revisar la facilidad de adopción del canal, la consistencia en el uso del conocimiento disponible y el potencial de este tipo de solución como mecanismo de orientación y acompañamiento digital.
+        </p>
+
+        <div class="content-grid">
+          <article class="card">
+            <h3>Objetivo funcional</h3>
+            <p>
+              El objetivo funcional de esta implementación es demostrar que Agentforce puede operar como un punto de contacto digital útil, confiable y escalable, integrándose en una página web con una identidad visual corporativa y ofreciendo una experiencia conversacional robusta. La prueba permite evaluar si el agente logra recuperar información pertinente, resumirla adecuadamente, responder con claridad y mantener un marco de conversación coherente frente a diferentes tipos de preguntas relacionadas con las guías cargadas.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Base documental utilizada</h3>
+            <p>
+              Para esta validación, el agente ha sido configurado para apoyarse en cuatro documentos específicos: la Guía Cardiología, la Guía de Gastroenterología PRE, la Guía de Vacunación y la Guía Dermatológica. Estas guías constituyen el núcleo de conocimiento de la prueba y permiten revisar cómo el agente interpreta contenidos especializados, identifica información relevante dentro del contexto disponible y la presenta de manera comprensible para el usuario final, manteniendo una comunicación organizada y útil.
+            </p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>
-        POC Agentforce Ana Resuelve Colmédica. Sitio de validación utilizado para evaluar una integración web con enfoque corporativo y capacidades conversacionales basadas en guías documentales definidas para la prueba.
-      </p>
-    </div>
-  </footer>
+    <section class="channel-section" id="guias">
+      <div class="container">
+        <h2 class="channel-title">Guías de conocimiento utilizadas en la prueba</h2>
+
+        <div class="guides-grid">
+          <article class="guide-item">
+            <div class="guide-icon">❤</div>
+            <h4>Guía Cardiología</h4>
+            <p>
+              Utilizada para validar consultas y respuestas relacionadas con lineamientos y orientación dentro del componente cardiovascular.
+            </p>
+          </article>
+
+          <article class="guide-item">
+            <div class="guide-icon">◎</div>
+            <h4>Guía de Gastroenterología PRE</h4>
+            <p>
+              Incluida para revisar la capacidad del agente de interpretar información asociada a criterios y contenidos de gastroenterología.
+            </p>
+          </article>
+
+          <article class="guide-item">
+            <div class="guide-icon">✚</div>
+            <h4>Guía de Vacunación</h4>
+            <p>
+              Empleada para probar consultas de orientación basadas en contenidos de inmunización y lineamientos informativos relacionados.
+            </p>
+          </article>
+
+          <article class="guide-item">
+            <div class="guide-icon">◌</div>
+            <h4>Guía Dermatológica</h4>
+            <p>
+              Considerada para medir la recuperación de conocimiento pertinente dentro de conversaciones asociadas al ámbito dermatológico.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const FIXED_USERNAME = "prueba.concepto";
+    const FIXED_PASSWORD = "Agente.2026*";
+
+    const loginScreen = document.getElementById("loginScreen");
+    const appContent = document.getElementById("appContent");
+    const loginForm = document.getElementById("loginForm");
+    const loginError = document.getElementById("loginError");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    function showApp() {
+      loginScreen.classList.add("hidden");
+      appContent.classList.remove("hidden");
+    }
+
+    function showLogin() {
+      appContent.classList.add("hidden");
+      loginScreen.classList.remove("hidden");
+      document.getElementById("password").value = "";
+    }
+
+    function isAuthenticated() {
+      return sessionStorage.getItem("poc_authenticated") === "true";
+    }
+
+    if (isAuthenticated()) {
+      showApp();
+    } else {
+      showLogin();
+    }
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (username === FIXED_USERNAME && password === FIXED_PASSWORD) {
+        sessionStorage.setItem("poc_authenticated", "true");
+        loginError.textContent = "";
+        showApp();
+      } else {
+        loginError.textContent = "Usuario o contraseña incorrectos.";
+      }
+    });
+
+    logoutBtn.addEventListener("click", function () {
+      sessionStorage.removeItem("poc_authenticated");
+      showLogin();
+    });
+  </script>
+  <script type='text/javascript'>
+		function initEmbeddedMessaging() {
+			try {
+				embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
+
+				embeddedservice_bootstrap.init(
+					'00DfL00000OHd0l',
+					'Github_Messaging',
+					'https://sqdm1.my.site.com/ESWGithubMessaging1776746702168',
+					{
+						scrt2URL: 'https://sqdm1.my.salesforce-scrt.com'
+					}
+				);
+			} catch (err) {
+				console.error('Error loading Embedded Messaging: ', err);
+			}
+		};
+	</script>
+	<script type='text/javascript' src='https://sqdm1.my.site.com/ESWGithubMessaging1776746702168/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
 </body>
 </html>
