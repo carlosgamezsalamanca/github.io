@@ -52,9 +52,16 @@
       display: none !important;
     }
 
-    /* =========================
-       LOGIN
-    ========================== */
+    .topbar {
+      height: 4px;
+      background: var(--primary);
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
     .login-screen {
       min-height: 100vh;
       display: flex;
@@ -168,19 +175,6 @@
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.55;
-    }
-
-    /* =========================
-       SITE
-    ========================== */
-    .topbar {
-      height: 4px;
-      background: var(--primary);
-    }
-
-    .container {
-      width: min(var(--max-width), calc(100% - 40px));
-      margin: 0 auto;
     }
 
     .navbar {
@@ -581,7 +575,6 @@
   </style>
 </head>
 <body>
-  <!-- LOGIN -->
   <div id="loginScreen" class="login-screen">
     <div class="login-card">
       <div class="login-badge">AR</div>
@@ -614,7 +607,6 @@
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
   <div id="appContent" class="hidden">
     <div class="topbar"></div>
 
@@ -731,53 +723,19 @@
       </div>
     </section>
 
-  
-
     <section class="agent-section" id="agente">
       <div class="container">
         <div class="agent-wrapper">
-          <div class="agent-header">
-            <h3>Agente embebido</h3>
-            <p>
-              A continuación se dispone el espacio de integración del agente conversacional de Agentforce. En esta sección debe incorporarse el snippet oficial del deployment web, con el fin de ejecutar la prueba funcional dentro de una página con estilo corporativo, contenido contextual y una estructura visual consistente con el enfoque de esta demostración.
-            </p>
-          </div>
 
-          <div class="agent-body">
-            <div class="agent-placeholder">
-              <div>
-                <strong>Inserta aquí el snippet de Agentforce</strong>
-                <span>Reemplaza este bloque por el código HTML / JavaScript oficial del agente.</span>
-              </div>
-            </div>
-<script type='text/javascript'>
-		function initEmbeddedMessaging() {
-			try {
-				embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
 
-				embeddedservice_bootstrap.init(
-					'00DfL00000OHd0l',
-					'Github_Messaging',
-					'https://sqdm1.my.site.com/ESWGithubMessaging1776746702168',
-					{
-						scrt2URL: 'https://sqdm1.my.salesforce-scrt.com'
-					}
-				);
-			} catch (err) {
-				console.error('Error loading Embedded Messaging: ', err);
-			}
-		};
-	</script>
-	<script type='text/javascript' src='https://sqdm1.my.site.com/ESWGithubMessaging1776746702168/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-            
-          </div>
+
         </div>
       </div>
     </section>
 
     <footer class="footer">
       <div class="container">
-        
+
       </div>
     </footer>
   </div>
@@ -791,6 +749,8 @@
     const loginForm = document.getElementById("loginForm");
     const loginError = document.getElementById("loginError");
     const logoutBtn = document.getElementById("logoutBtn");
+
+    let agentLoaded = false;
 
     function showApp() {
       loginScreen.classList.add("hidden");
@@ -807,8 +767,49 @@
       return sessionStorage.getItem("poc_authenticated") === "true";
     }
 
+    function initEmbeddedMessagingAfterLogin() {
+      try {
+        embeddedservice_bootstrap.settings.language = "es";
+
+        embeddedservice_bootstrap.init(
+          "00DfL00000OHd0l",
+          "Github_Messaging",
+          "https://sqdm1.my.site.com/ESWGithubMessaging1776746702168",
+          {
+            scrt2URL: "https://sqdm1.my.salesforce-scrt.com"
+          }
+        );
+      } catch (err) {
+        console.error("Error loading Embedded Messaging: ", err);
+      }
+    }
+
+    function loadAgent() {
+      if (agentLoaded) return;
+      agentLoaded = true;
+
+      const existingScript = document.querySelector(
+        'script[data-agentforce-bootstrap="true"]'
+      );
+
+      if (existingScript) return;
+
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src =
+        "https://sqdm1.my.site.com/ESWGithubMessaging1776746702168/assets/js/bootstrap.min.js";
+      script.setAttribute("data-agentforce-bootstrap", "true");
+      script.onload = initEmbeddedMessagingAfterLogin;
+      script.onerror = function () {
+        console.error("No fue posible cargar el script de Embedded Messaging.");
+      };
+
+      document.body.appendChild(script);
+    }
+
     if (isAuthenticated()) {
       showApp();
+      loadAgent();
     } else {
       showLogin();
     }
@@ -823,6 +824,7 @@
         sessionStorage.setItem("poc_authenticated", "true");
         loginError.textContent = "";
         showApp();
+        loadAgent();
       } else {
         loginError.textContent = "Usuario o contraseña incorrectos.";
       }
@@ -831,6 +833,7 @@
     logoutBtn.addEventListener("click", function () {
       sessionStorage.removeItem("poc_authenticated");
       showLogin();
+      location.reload();
     });
   </script>
 </body>
